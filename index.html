@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Praxisguard | IT-Sicherheit für Arztpraxen</title>
+<style>
+body {margin:0;font-family: Arial, sans-serif; line-height:1.6; color:#333;}
+header {background:#002B5B;color:white;padding:20px 40px;display:flex;align-items:center;box-shadow:0 2px 5px rgba(0,0,0,0.1);}
+header img {height:60px;margin-right:20px;}
+header nav a {color:white;margin-right:15px;text-decoration:none;font-weight:bold;}
+section {padding:60px 40px;}
+.hero {background:#F5F9FC;padding:80px 40px;text-align:center;}
+.hero h1 {font-size:36px;margin-bottom:10px;}
+.hero p {font-size:20px;color:#555;margin-top:0;}
+.services {background:#FFFFFF;}
+.services h2 {font-size:28px;margin-bottom:20px;color:#002B5B;}
+.services ul {list-style:none;padding:0;}
+.services li {background:#F5F9FC;margin-bottom:10px;padding:15px;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,0.1);}
+.packages {background:#F5F9FC;}
+.packages h2 {font-size:28px;margin-bottom:20px;color:#002B5B;}
+.package-table {width:100%;border-collapse:collapse;}
+.package-table th, .package-table td {padding:15px;text-align:left;border-bottom:1px solid #ddd;}
+.package-table th {background:#002B5B;color:white;}
+.package-table tr:nth-child(even){background:#ffffff;}
+.package-table tr:nth-child(odd){background:#F5F9FC;}
+.contact {background:#FFFFFF;}
+.contact h2 {font-size:28px;margin-bottom:20px;color:#002B5B;}
+.contact form {max-width:600px;margin:auto;}
+.contact input, .contact textarea {width:100%;padding:10px;margin-bottom:10px;border:1px solid #ccc;border-radius:4px;}
+.contact button {background:#002B5B;color:white;padding:10px 20px;border:none;border-radius:4px;cursor:pointer;}
+.contact button:hover {background:#004080;}
+footer {background:#002B5B;color:white;padding:20px;text-align:center;font-size:14px;}
+@media (max-width:768px) {
+  header {flex-direction:column; align-items:flex-start;}
+  header nav {margin-top:10px;}
+}
+</style>
+</head>
+<body>
+<header>
+  <img src="logo.png" alt="Praxisguard Logo">
+  <nav>
+    <a href="#services">Leistungen</a>
+    <a href="#packages">Pakete</a>
+    <a href="#contact">Kontakt</a>
+  </nav>
+</header>
+<section class="hero">
+  <h1>IT-Sicherheit & Automatisierung für Arztpraxen</h1>
+  <p>Praxisguard schützt Ihre Praxis, optimiert Prozesse und gibt Ihnen Sicherheit.</p>
+</section>
+<section id="services" class="services">
+  <h2>Unsere Leistungen</h2>
+  <ul>
+    <li><strong>IT-Sicherheit:</strong> Absicherung Ihrer Systeme & Daten nach DSGVO.</li>
+    <li><strong>Monitoring:</strong> Permanente Überwachung Ihrer IT-Infrastruktur mit schnellen Alarmen.</li>
+    <li><strong>Backups:</strong> Einrichten & Prüfen von regelmäßigen Datensicherungen inklusive Test-Restores.</li>
+    <li><strong>Automatisierung:</strong> Digitalisierung und Automatisierung von Routineprozessen.</li>
+    <li><strong>Support:</strong> Remote- und Vor-Ort-Unterstützung für Ihre Praxis-Software und Hardware.</li>
+  </ul>
+</section>
+<section id="packages" class="packages">
+  <h2>Unsere Pakete</h2>
+  <table class="package-table">
+    <tr>
+      <th>Pakete</th>
+      <th>Leistungen</th>
+      <th>Preis pro Monat</th>
+    </tr>
+    <tr>
+      <td><strong>Basic</strong></td>
+      <td>Monitoring, 30 Min Remote-Support/Monat, Reaktionszeit 48h</td>
+      <td>150 €</td>
+    </tr>
+    <tr>
+      <td><strong>Standard</strong></td>
+      <td>Monitoring, 1 Std Remote-Support/Monat, Reaktionszeit 24h</td>
+      <td>300 €</td>
+    </tr>
+    <tr>
+      <td><strong>Premium</strong></td>
+      <td>Monitoring, 3 Std Support/Monat, Reaktionszeit 8h, 1 Vor-Ort-Besuch/Quartal</td>
+      <td>600 €</td>
+    </tr>
+  </table>
+</section>
+<section id="contact" class="contact">
+  <h2>Kontakt</h2>
+  <p>Sie haben Fragen oder möchten ein Angebot? Schreiben Sie uns!</p>
+  <form>
+    <input type="text" placeholder="Ihr Name" required>
+    <input type="email" placeholder="Ihre E-Mail" required>
+    <textarea rows="5" placeholder="Ihre Nachricht" required></textarea>
+    <button type="submit">Nachricht senden</button>
+  </form>
+</section>
+<footer>
+  &copy; 2025 Praxisguard – IT-Sicherheit für Arztpraxen. Alle Rechte vorbehalten.
+</footer>
+</body>
+</html>
