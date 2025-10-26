@@ -3,37 +3,144 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Praxisguard | IT-Sicherheit für Arztpraxen</title>
+<title>Praxisguard | IT-Sicherheit & Automatisierung</title>
 <style>
-body {margin:0;font-family: Arial, sans-serif; line-height:1.6; color:#333;}
-header {background:#002B5B;color:white;padding:20px 40px;display:flex;align-items:center;box-shadow:0 2px 5px rgba(0,0,0,0.1);}
-header img {height:60px;margin-right:20px;}
-header nav a {color:white;margin-right:15px;text-decoration:none;font-weight:bold;}
-section {padding:60px 40px;}
-.hero {background:#F5F9FC;padding:80px 40px;text-align:center;}
-.hero h1 {font-size:36px;margin-bottom:10px;}
-.hero p {font-size:20px;color:#555;margin-top:0;}
-.services {background:#FFFFFF;}
-.services h2 {font-size:28px;margin-bottom:20px;color:#002B5B;}
-.services ul {list-style:none;padding:0;}
-.services li {background:#F5F9FC;margin-bottom:10px;padding:15px;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,0.1);}
-.packages {background:#F5F9FC;}
-.packages h2 {font-size:28px;margin-bottom:20px;color:#002B5B;}
-.package-table {width:100%;border-collapse:collapse;}
-.package-table th, .package-table td {padding:15px;text-align:left;border-bottom:1px solid #ddd;}
-.package-table th {background:#002B5B;color:white;}
-.package-table tr:nth-child(even){background:#ffffff;}
-.package-table tr:nth-child(odd){background:#F5F9FC;}
-.contact {background:#FFFFFF;}
-.contact h2 {font-size:28px;margin-bottom:20px;color:#002B5B;}
-.contact form {max-width:600px;margin:auto;}
-.contact input, .contact textarea {width:100%;padding:10px;margin-bottom:10px;border:1px solid #ccc;border-radius:4px;}
-.contact button {background:#002B5B;color:white;padding:10px 20px;border:none;border-radius:4px;cursor:pointer;}
-.contact button:hover {background:#004080;}
-footer {background:#002B5B;color:white;padding:20px;text-align:center;font-size:14px;}
+:root {
+  --primary-color: #002B5B;
+  --secondary-color: #005B82;
+  --accent-color: #F5F9FC;
+  --light-color: #ffffff;
+  --dark-text: #333333;
+}
+body {
+  margin:0;
+  font-family: 'Arial', sans-serif;
+  color: var(--dark-text);
+  background-color: var(--accent-color);
+  line-height:1.6;
+}
+header {
+  position: fixed;
+  top:0;
+  width:100%;
+  background: var(--primary-color);
+  color: var(--light-color);
+  padding: 10px 40px;
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  box-shadow:0 2px 4px rgba(0,0,0,0.2);
+  z-index:1000;
+}
+header img {
+  height:50px;
+}
+nav a {
+  color: var(--light-color);
+  margin-left:20px;
+  text-decoration:none;
+  font-weight:bold;
+  transition: color 0.3s;
+}
+nav a:hover {
+  color: var(--secondary-color);
+}
+.hero {
+  background: linear-gradient(135deg,#002B5B 0%,#005B82 100%);
+  color: var(--light-color);
+  padding: 120px 40px 160px;
+  text-align:center;
+}
+.hero h1 {font-size:48px;margin-bottom:20px;}
+.hero p {font-size:20px;max-width:700px;margin:auto;}
+.hero .cta {
+  margin-top:30px;
+}
+.hero .cta a {
+  background: var(--light-color);
+  color: var(--primary-color);
+  padding: 12px 30px;
+  border-radius:6px;
+  text-decoration:none;
+  font-weight:bold;
+  transition: background 0.3s, color 0.3s;
+}
+.hero .cta a:hover {
+  background: var(--secondary-color);
+  color: var(--light-color);
+}
+section {padding:80px 40px;}
+.section-title {
+  font-size:32px;
+  margin-bottom:30px;
+  text-align:center;
+  color: var(--primary-color);
+}
+.about {background: var(--light-color);} 
+.about p {max-width:800px;margin:auto;font-size:18px;}
+.services {background: var(--accent-color);} 
+.services .service-list {display:flex;flex-wrap:wrap;justify-content:center;gap:20px;}
+.services .service-item {
+  background: var(--light-color);
+  padding:20px;
+  border-radius:10px;
+  box-shadow:0 2px 4px rgba(0,0,0,0.1);
+  flex:1 1 250px;
+  max-width:300px;
+}
+.services .service-item h3 {margin-top:0;color:var(--primary-color);} 
+.pricing {background: var(--light-color);} 
+.pricing .pricing-cards {display:flex;flex-wrap:wrap;justify-content:center;gap:20px;}
+.pricing .card {
+  background: var(--accent-color);
+  border:1px solid #ddd;
+  border-radius:10px;
+  flex:1 1 280px;
+  max-width:300px;
+  padding:30px;
+  text-align:center;
+  box-shadow:0 2px 4px rgba(0,0,0,0.1);
+  position:relative;
+}
+.pricing .card.recommended {border:2px solid var(--secondary-color);} 
+.pricing .card h3 {margin-top:0;color:var(--primary-color);} 
+.pricing .card .price {font-size:32px;font-weight:bold;margin:10px 0;color:var(--secondary-color);} 
+.pricing .card ul {list-style:none;padding:0;text-align:left;} 
+.pricing .card ul li {padding:5px 0;} 
+.pricing .card a {
+  display:inline-block;
+  margin-top:15px;
+  background: var(--primary-color);
+  color: var(--light-color);
+  padding:10px 20px;
+  border-radius:6px;
+  text-decoration:none;
+  transition: background 0.3s;
+}
+.pricing .card a:hover {background: var(--secondary-color);} 
+.benefits {background: var(--accent-color);} 
+.benefits ul {list-style:none;max-width:800px;margin:auto;padding:0;} 
+.benefits ul li {padding:10px 0;font-size:18px;} 
+.contact {background: var(--light-color);} 
+.contact form {max-width:600px;margin:auto;} 
+.contact input, .contact textarea {
+  width:100%;padding:12px;margin-bottom:10px;border:1px solid #ccc;border-radius:4px;
+}
+.contact button {
+  background: var(--primary-color);
+  color: var(--light-color);
+  padding:12px 30px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  transition: background 0.3s;
+}
+.contact button:hover {background: var(--secondary-color);} 
+footer {background: var(--primary-color);color: var(--light-color);padding:20px;text-align:center;font-size:14px;} 
 @media (max-width:768px) {
-  header {flex-direction:column; align-items:flex-start;}
-  header nav {margin-top:10px;}
+  .services .service-item, .pricing .card {flex:1 1 100%; max-width:none;}
+  header nav a {margin-left:10px;}
+  .hero h1 {font-size:36px;}
 }
 </style>
 </head>
@@ -41,62 +148,108 @@ footer {background:#002B5B;color:white;padding:20px;text-align:center;font-size:
 <header>
   <img src="logo.png" alt="Praxisguard Logo">
   <nav>
+    <a href="#about">Über uns</a>
     <a href="#services">Leistungen</a>
-    <a href="#packages">Pakete</a>
+    <a href="#pricing">Pakete</a>
     <a href="#contact">Kontakt</a>
   </nav>
 </header>
 <section class="hero">
-  <h1>IT-Sicherheit & Automatisierung für Arztpraxen</h1>
-  <p>Praxisguard schützt Ihre Praxis, optimiert Prozesse und gibt Ihnen Sicherheit.</p>
+  <h1>Schützen Sie Ihre Praxis. Optimieren Sie Ihre Prozesse.</h1>
+  <p>Praxisguard bietet ganzheitliche IT-Sicherheitslösungen und Automatisierungsdienste speziell für Arztpraxen. Wir sorgen dafür, dass Ihre Technik zuverlässig, sicher und effizient läuft.</p>
+  <div class="cta">
+    <a href="#contact">Jetzt unverbindlich beraten lassen</a>
+  </div>
+</section>
+<section id="about" class="about">
+  <h2 class="section-title">Über uns</h2>
+  <p>Als spezialisiertes IT-Dienstleistungsunternehmen für medizinische Einrichtungen kennen wir die besonderen Anforderungen von Arztpraxen. Mit über 5 Jahren Erfahrung in der Softwareentwicklung und IT-Betreuung sorgen wir dafür, dass Ihre Systeme sicher, stabil und konform mit allen gesetzlichen Bestimmungen laufen. Unsere Mission ist es, Technik so einzusetzen, dass sie den Praxisalltag erleichtert und nicht belastet.</p>
 </section>
 <section id="services" class="services">
-  <h2>Unsere Leistungen</h2>
+  <h2 class="section-title">Unsere Leistungen</h2>
+  <div class="service-list">
+    <div class="service-item">
+      <h3>IT-Sicherheit</h3>
+      <p>Schutz vor Viren, Malware und unbefugten Zugriffen. Sicherheitskonzepte nach DSGVO und aktuellem Stand der Technik.</p>
+    </div>
+    <div class="service-item">
+      <h3>Monitoring & Wartung</h3>
+      <p>24/7 Überwachung Ihrer Systeme. Frühzeitige Erkennung und Behebung von Problemen. Regelmäßige Updates und Wartungsarbeiten.</p>
+    </div>
+    <div class="service-item">
+      <h3>Backups & Recovery</h3>
+      <p>Automatisierte Sicherungen und regelmäßige Test-Wiederherstellungen, damit Ihre Daten jederzeit verfügbar sind.</p>
+    </div>
+    <div class="service-item">
+      <h3>Automatisierung</h3>
+      <p>Wir digitalisieren und automatisieren Ihre wiederkehrenden Prozesse, damit Sie sich auf Ihre Patienten konzentrieren können.</p>
+    </div>
+    <div class="service-item">
+      <h3>Beratung & Support</h3>
+      <p>Individuelle Beratung, schnelle Hilfe per Fernwartung und Vor-Ort-Service, wenn Sie uns brauchen.</p>
+    </div>
+  </div>
+</section>
+<section id="pricing" class="pricing">
+  <h2 class="section-title">Unsere Pakete</h2>
+  <div class="pricing-cards">
+    <div class="card">
+      <h3>Basic</h3>
+      <p class="price">150 € / Monat</p>
+      <ul>
+        <li>Monitoring der Systeme</li>
+        <li>30 Min Remote-Support / Monat</li>
+        <li>Reaktionszeit innerhalb 48h</li>
+      </ul>
+      <a href="#contact">Anfragen</a>
+    </div>
+    <div class="card recommended">
+      <h3>Standard</h3>
+      <p class="price">300 € / Monat</p>
+      <ul>
+        <li>Monitoring & Wartung</li>
+        <li>1 Std Remote-Support / Monat</li>
+        <li>Reaktionszeit innerhalb 24h</li>
+        <li>Monatlicher System-Report</li>
+      </ul>
+      <a href="#contact">Anfragen</a>
+    </div>
+    <div class="card">
+      <h3>Premium</h3>
+      <p class="price">600 € / Monat</p>
+      <ul>
+        <li>Monitoring & Wartung</li>
+        <li>3 Std Support / Monat</li>
+        <li>Reaktionszeit innerhalb 8h</li>
+        <li>1 Vor-Ort-Besuch pro Quartal</li>
+      </ul>
+      <a href="#contact">Anfragen</a>
+    </div>
+  </div>
+</section>
+<section id="benefits" class="benefits">
+  <h2 class="section-title">Ihre Vorteile mit Praxisguard</h2>
   <ul>
-    <li><strong>IT-Sicherheit:</strong> Absicherung Ihrer Systeme & Daten nach DSGVO.</li>
-    <li><strong>Monitoring:</strong> Permanente Überwachung Ihrer IT-Infrastruktur mit schnellen Alarmen.</li>
-    <li><strong>Backups:</strong> Einrichten & Prüfen von regelmäßigen Datensicherungen inklusive Test-Restores.</li>
-    <li><strong>Automatisierung:</strong> Digitalisierung und Automatisierung von Routineprozessen.</li>
-    <li><strong>Support:</strong> Remote- und Vor-Ort-Unterstützung für Ihre Praxis-Software und Hardware.</li>
+    <li>Maximale Sicherheit für Patientendaten</li>
+    <li>Stabile Systeme und weniger Ausfallzeiten</li>
+    <li>Verlässlicher Ansprechpartner mit kurzer Reaktionszeit</li>
+    <li>Transparente und kalkulierbare Kosten</li>
+    <li>Individuelle Beratung und maßgeschneiderte Lösungen</li>
   </ul>
 </section>
-<section id="packages" class="packages">
-  <h2>Unsere Pakete</h2>
-  <table class="package-table">
-    <tr>
-      <th>Pakete</th>
-      <th>Leistungen</th>
-      <th>Preis pro Monat</th>
-    </tr>
-    <tr>
-      <td><strong>Basic</strong></td>
-      <td>Monitoring, 30 Min Remote-Support/Monat, Reaktionszeit 48h</td>
-      <td>150 €</td>
-    </tr>
-    <tr>
-      <td><strong>Standard</strong></td>
-      <td>Monitoring, 1 Std Remote-Support/Monat, Reaktionszeit 24h</td>
-      <td>300 €</td>
-    </tr>
-    <tr>
-      <td><strong>Premium</strong></td>
-      <td>Monitoring, 3 Std Support/Monat, Reaktionszeit 8h, 1 Vor-Ort-Besuch/Quartal</td>
-      <td>600 €</td>
-    </tr>
-  </table>
-</section>
 <section id="contact" class="contact">
-  <h2>Kontakt</h2>
-  <p>Sie haben Fragen oder möchten ein Angebot? Schreiben Sie uns!</p>
+  <h2 class="section-title">Kontakt</h2>
+  <p>Haben Sie Fragen oder möchten Sie ein individuelles Angebot? Nutzen Sie unser Kontaktformular oder schreiben Sie uns direkt eine E-Mail. Wir freuen uns auf Ihre Anfrage!</p>
   <form>
     <input type="text" placeholder="Ihr Name" required>
     <input type="email" placeholder="Ihre E-Mail" required>
+    <input type="text" placeholder="Telefon (optional)">
     <textarea rows="5" placeholder="Ihre Nachricht" required></textarea>
     <button type="submit">Nachricht senden</button>
   </form>
 </section>
 <footer>
-  &copy; 2025 Praxisguard – IT-Sicherheit für Arztpraxen. Alle Rechte vorbehalten.
+  &copy; 2025 Praxisguard. Alle Rechte vorbehalten. | Impressum | Datenschutz
 </footer>
 </body>
 </html>
