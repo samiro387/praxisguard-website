@@ -57,6 +57,15 @@ nav a {
 nav a:hover {
   color: var(--secondary-color);
 }
+/* Hamburger menu button styling */
+.menu-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--light-color);
+  font-size: 28px;
+  cursor: pointer;
+}
 /* Allow navigation to wrap if necessary */
 header nav {
   display:flex;
@@ -213,12 +222,22 @@ footer {background: var(--primary-color);color: var(--light-color);padding:20px;
     align-items: flex-start;
     padding: 10px 20px;
   }
+  /* Hide navigation by default on small screens; it will be toggled via JavaScript */
   header nav {
+    display: none;
     width: 100%;
     margin-top: 10px;
-    display: flex;
     flex-direction: column;
     align-items: flex-start;
+  }
+  /* When nav has the 'open' class, show it */
+  header nav.open {
+    display: flex;
+  }
+  /* Show the hamburger toggle button on small screens */
+  .menu-toggle {
+    display: block;
+    margin-left: auto;
   }
   header nav a {
     display: block;
@@ -244,6 +263,8 @@ footer {background: var(--primary-color);color: var(--light-color);padding:20px;
     <a href="#pricing">Pakete</a>
     <a href="#contact">Kontakt</a>
   </nav>
+  <!-- Hamburger menu toggle button for mobile -->
+  <button class="menu-toggle" aria-label="Menü öffnen/schließen">&#9776;</button>
 </header>
 <section class="hero">
   <h1>Schützen Sie Ihre Praxis. Optimieren Sie Ihre Prozesse.</h1>
@@ -438,5 +459,25 @@ footer {background: var(--primary-color);color: var(--light-color);padding:20px;
     });
   });
   </script>
+
+  <!-- Toggle navigation menu for mobile -->
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('header nav');
+    if (menuToggle && nav) {
+      menuToggle.addEventListener('click', function() {
+        nav.classList.toggle('open');
+      });
+      // Close navigation after clicking a link on mobile
+      nav.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          nav.classList.remove('open');
+        });
+      });
+    }
+  });
+  </script>
+
 </body>
 </html>
