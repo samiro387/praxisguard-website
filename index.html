@@ -118,6 +118,15 @@ section {padding:80px 40px;}
   transition: background 0.3s;
 }
 .pricing .card a:hover {background: var(--secondary-color);} 
+/* Hervorhebung für ausgewählte Preiskarte */
+.pricing .card.selected {
+  border: 2px solid var(--secondary-color);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.pricing .card.selected a {
+  background: var(--secondary-color);
+  color: var(--light-color);
+}
 .benefits {background: var(--accent-color);} 
 .benefits ul {list-style:none;max-width:800px;margin:auto;padding:0;} 
 .benefits ul li {padding:10px 0;font-size:18px;} 
@@ -201,7 +210,7 @@ footer {background: var(--primary-color);color: var(--light-color);padding:20px;
         <li>30 Min Remote-Support / Monat</li>
         <li>Reaktionszeit innerhalb 48h</li>
       </ul>
-      <a href="#contact">Anfragen</a>
+      <a href="#contact">Auswählen</a>
     </div>
     <div class="card recommended">
       <h3>Standard</h3>
@@ -212,7 +221,7 @@ footer {background: var(--primary-color);color: var(--light-color);padding:20px;
         <li>Reaktionszeit innerhalb 24h</li>
         <li>Monatlicher System-Report</li>
       </ul>
-      <a href="#contact">Anfragen</a>
+      <a href="#contact">Auswählen</a>
     </div>
     <div class="card">
       <h3>Premium</h3>
@@ -223,7 +232,7 @@ footer {background: var(--primary-color);color: var(--light-color);padding:20px;
         <li>Reaktionszeit innerhalb 8h</li>
         <li>1 Vor-Ort-Besuch pro Quartal</li>
       </ul>
-      <a href="#contact">Anfragen</a>
+      <a href="#contact">Auswählen</a>
     </div>
   </div>
 </section>
@@ -251,5 +260,29 @@ footer {background: var(--primary-color);color: var(--light-color);padding:20px;
 <footer>
   &copy; 2025 Praxisguard. Alle Rechte vorbehalten. | Impressum | Datenschutz
 </footer>
+  <!-- Interaktive Auswahl für Preiskarten -->
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.pricing .card');
+    cards.forEach(card => {
+      card.addEventListener('click', function() {
+        // Alle Karten zurücksetzen
+        cards.forEach(c => {
+          c.classList.remove('selected');
+          const link = c.querySelector('a');
+          if (link) {
+            link.textContent = 'Auswählen';
+          }
+        });
+        // Diese Karte auswählen
+        this.classList.add('selected');
+        const link = this.querySelector('a');
+        if (link) {
+          link.textContent = 'Ausgewählt';
+        }
+      });
+    });
+  });
+  </script>
 </body>
 </html>
