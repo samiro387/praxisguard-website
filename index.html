@@ -3,18 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Import modern Google font for a professional look -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <title>PraxisGuardian | IT-Sicherheit & Automatisierung</title>
 <style>
 :root {
-  --primary-color: #002B5B;
-  --secondary-color: #005B82;
-  --accent-color: #F5F9FC;
+  /* Updated color palette for a modern and professional look */
+  --primary-color: #1D3557; /* soft navy */
+  --secondary-color: #457B9D; /* muted azure */
+  --accent-color: #F1FAEE; /* off white background */
   --light-color: #ffffff;
-  --dark-text: #333333;
+  --dark-text: #2F3542; /* dark grey for readability */
 }
 body {
   margin:0;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Inter', sans-serif;
   color: var(--dark-text);
   background-color: var(--accent-color);
   line-height:1.6;
@@ -23,13 +28,14 @@ header {
   position: fixed;
   top:0;
   width:100%;
-  background: var(--primary-color);
-  color: var(--light-color);
+  background: var(--light-color);
+  color: var(--primary-color);
   padding: 10px 40px;
   display:flex;
   align-items:center;
   justify-content: space-between;
-  box-shadow:0 2px 4px rgba(0,0,0,0.2);
+  box-shadow:0 2px 4px rgba(0,0,0,0.05);
+  border-bottom:1px solid #e5e5e5;
   z-index:1000;
 }
   /* Hide the original base64 logo and style the new logo */
@@ -37,23 +43,29 @@ header {
     display: none;
   }
   header img.logo-new {
-    height:50px;
+    height:55px;
     display:block;
-    /* Invert colors so the dark logo text appears white on dark background */
-    filter: invert(1);
+    /* Show the logo as-is on a light background */
+    filter: none;
   }
 nav a {
-  color: var(--light-color);
+  color: var(--primary-color);
   margin-left:20px;
   text-decoration:none;
-  font-weight:bold;
+  font-weight:600;
   transition: color 0.3s;
 }
 nav a:hover {
   color: var(--secondary-color);
 }
+/* Allow navigation to wrap if necessary */
+header nav {
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+}
 .hero {
-  background: linear-gradient(135deg,#002B5B 0%,#005B82 100%);
+  background: linear-gradient(135deg,var(--primary-color) 0%,var(--secondary-color) 100%);
   color: var(--light-color);
   padding: 120px 40px 160px;
   text-align:center;
@@ -66,15 +78,17 @@ nav a:hover {
 .hero .cta a {
   background: var(--light-color);
   color: var(--primary-color);
-  padding: 12px 30px;
-  border-radius:6px;
+  padding: 14px 34px;
+  border-radius:8px;
   text-decoration:none;
-  font-weight:bold;
-  transition: background 0.3s, color 0.3s;
+  font-weight:600;
+  box-shadow:0 2px 4px rgba(0,0,0,0.1);
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s;
 }
 .hero .cta a:hover {
   background: var(--secondary-color);
   color: var(--light-color);
+  box-shadow:0 4px 8px rgba(0,0,0,0.2);
 }
 section {padding:80px 40px;}
 .section-title {
@@ -189,7 +203,8 @@ section {padding:80px 40px;}
 .contact button:hover {background: var(--secondary-color);} 
 footer {background: var(--primary-color);color: var(--light-color);padding:20px;text-align:center;font-size:14px;} 
 @media (max-width:768px) {
-  .services .service-item, .pricing .card {
+  .services .service-item,
+  .pricing .card {
     flex: 1 1 100%;
     max-width: none;
   }
@@ -197,19 +212,20 @@ footer {background: var(--primary-color);color: var(--light-color);padding:20px;
   header {
     flex-direction: column;
     align-items: flex-start;
+    padding: 10px 20px;
   }
   header nav {
     width: 100%;
     margin-top: 10px;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
   }
   header nav a {
     display: block;
-    /* Provide spacing and allow links to wrap into two columns */
-    margin: 8px 10px 8px 0;
-    flex: 1 1 45%;
+    margin: 8px 0;
+    padding: 8px 0;
+    width: 100%;
   }
   .hero h1 {
     font-size: 36px;
