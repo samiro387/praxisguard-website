@@ -39,6 +39,8 @@ header {
   header img.logo-new {
     height:50px;
     display:block;
+    /* Invert colors so the dark logo text appears white on dark background */
+    filter: invert(1);
   }
 nav a {
   color: var(--light-color);
@@ -201,10 +203,13 @@ footer {background: var(--primary-color);color: var(--light-color);padding:20px;
     margin-top: 10px;
     display: flex;
     flex-wrap: wrap;
+    justify-content: flex-start;
   }
   header nav a {
     display: block;
-    margin: 8px 0;
+    /* Provide spacing and allow links to wrap into two columns */
+    margin: 8px 10px 8px 0;
+    flex: 1 1 45%;
   }
   .hero h1 {
     font-size: 36px;
