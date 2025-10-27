@@ -30,7 +30,8 @@ header {
   width:100%;
   background: var(--primary-color);
   color: var(--light-color);
-  padding: 10px 40px;
+  /* Increase padding to ensure logo and menu button are fully visible */
+  padding: 15px 40px;
   display:flex;
   align-items:center;
   justify-content: space-between;
@@ -42,10 +43,13 @@ header {
     display: none;
   }
   header img.logo-new {
-    height:55px;
+    /* Adjust logo sizing and add a light background so the dark logo remains visible on the dark header */
+    height:50px;
     display:block;
-    /* Invert colors so the dark logo text appears white on dark background */
-    filter: invert(1);
+    background: var(--light-color);
+    padding:4px;
+    border-radius:6px;
+    box-sizing:border-box;
   }
 nav a {
   color: var(--light-color);
@@ -220,7 +224,8 @@ footer {background: var(--primary-color);color: var(--light-color);padding:20px;
   header {
     flex-direction: column;
     align-items: flex-start;
-    padding: 10px 20px;
+    /* Increase padding on mobile to prevent logo and menu button from being clipped */
+    padding: 15px 20px;
   }
   /* Hide navigation by default on small screens; it will be toggled via JavaScript */
   header nav {
