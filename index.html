@@ -127,6 +127,41 @@ section {padding:80px 40px;}
   background: var(--secondary-color);
   color: var(--light-color);
 }
+
+  /* Plan-Details-Bereich */
+  .plan-details {
+    padding: 60px 20px;
+    background: var(--light-color);
+    text-align: center;
+    display: none;
+  }
+  .plan-details h2 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+  }
+  .plan-details ul {
+    list-style: none;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0;
+    text-align: left;
+  }
+  .plan-details ul li {
+    padding: 5px 0;
+  }
+  .plan-details .button {
+    display: inline-block;
+    margin-top: 15px;
+    background: var(--primary-color);
+    color: var(--light-color);
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+  .plan-details .button:hover {
+    background: var(--secondary-color);
+  }
 .benefits {background: var(--accent-color);} 
 .benefits ul {list-style:none;max-width:800px;margin:auto;padding:0;} 
 .benefits ul li {padding:10px 0;font-size:18px;} 
@@ -236,6 +271,17 @@ footer {background: var(--primary-color);color: var(--light-color);padding:20px;
     </div>
   </div>
 </section>
+
+  <!-- Plan-Details-Bereich: wird nach Klick auf ein Paket angezeigt -->
+  <section id="plan-details" class="plan-details">
+    <h2 id="plan-title"></h2>
+    <p id="plan-description"></p>
+    <ul id="plan-features"></ul>
+    <p><strong id="plan-price"></strong></p>
+    <p>Wir kümmern uns um Ihre IT, damit Sie sich voll und ganz auf Ihre Patienten konzentrieren können. Wählen Sie Ihr Paket und starten Sie sorgenfrei.</p>
+    <!-- Link führt zum Kontaktformular und lässt Sie direkt anfragen -->
+    <a href="#contact" class="button">Kontakt aufnehmen</a>
+  </section>
 <section id="benefits" class="benefits">
   <h2 class="section-title">Ihre Vorteile mit Praxisguard</h2>
   <ul>
@@ -253,6 +299,8 @@ footer {background: var(--primary-color);color: var(--light-color);padding:20px;
     <input type="text" placeholder="Ihr Name" required>
     <input type="email" placeholder="Ihre E-Mail" required>
     <input type="text" placeholder="Telefon (optional)">
+    <!-- ausgewähltes Paket als versteckte Eingabe zum Vorfüllen -->
+    <input type="hidden" id="selected-plan" name="plan" value="">
     <textarea rows="5" placeholder="Ihre Nachricht" required></textarea>
     <button type="submit">Nachricht senden</button>
   </form>
@@ -264,14 +312,55 @@ footer {background: var(--primary-color);color: var(--light-color);padding:20px;
   <script>
   document.addEventListener('DOMContentLoaded', function() {
     const cards = document.querySelectorAll('.pricing .card');
+    const detailsSection = document.getElementById('plan-details');
+    const planTitle = document.getElementById('plan-title');
+    const planDescription = document.getElementById('plan-description');
+    const planFeatures = document.getElementById('plan-features');
+    const planPrice = document.getElementById('plan-price');
+    const hiddenInput = document.getElementById('selected-plan');
+
+    const planData = {
+      "Basic": {
+        price: "150 € / Monat",
+        features: [
+          "Monitoring der Systeme",
+          "30 Min Remote-Support / Monat",
+          "Reaktionszeit innerhalb 48h"
+        ],
+        description: "Ideal für kleine Praxen, die eine Grundabsicherung wünschen. Wir überwachen Ihre Systeme und unterstützen Sie bei Problemen."
+      },
+      "Standard": {
+        price: "300 € / Monat",
+        features: [
+          "Monitoring & Wartung",
+          "1 Std Remote-Support / Monat",
+          "Reaktionszeit innerhalb 24h",
+          "Monatlicher System-Report"
+        ],
+        description: "Für Praxen, die mehr Unterstützung brauchen. Neben Monitoring kümmern wir uns um Wartung, bieten schnellere Reaktionszeiten und liefern monatliche Berichte."
+      },
+      "Premium": {
+        price: "600 € / Monat",
+        features: [
+          "Monitoring & Wartung",
+          "3 Std Support / Monat",
+          "Reaktionszeit innerhalb 8h",
+          "1 Vor-Ort-Besuch pro Quartal"
+        ],
+        description: "Unser Rundum-sorglos-Paket. Maximale Betreuung inklusive regelmäßiger Vor-Ort-Termine und kürzester Reaktionszeit."
+      }
+    };
+
     cards.forEach(card => {
-      card.addEventListener('click', function() {
+      card.addEventListener('click', function(e) {
+        // Verhindert das standardmäßige Navigieren des Links
+        e.preventDefault();
         // Alle Karten zurücksetzen
         cards.forEach(c => {
           c.classList.remove('selected');
-          const link = c.querySelector('a');
-          if (link) {
-            link.textContent = 'Auswählen';
+          const linkEl = c.querySelector('a');
+          if (linkEl) {
+            linkEl.textContent = 'Auswählen';
           }
         });
         // Diese Karte auswählen
@@ -279,6 +368,24 @@ footer {background: var(--primary-color);color: var(--light-color);padding:20px;
         const link = this.querySelector('a');
         if (link) {
           link.textContent = 'Ausgewählt';
+        }
+        // Planname ermitteln und Details füllen
+        const planName = this.querySelector('h3').textContent.trim();
+        const data = planData[planName];
+        if (data) {
+          planTitle.textContent = planName + ' Paket';
+          planDescription.textContent = data.description;
+          planFeatures.innerHTML = '';
+          data.features.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = item;
+            planFeatures.appendChild(li);
+          });
+          planPrice.textContent = data.price;
+          hiddenInput.value = planName;
+          detailsSection.style.display = 'block';
+          // Zum Detailbereich scrollen
+          detailsSection.scrollIntoView({ behavior: 'smooth' });
         }
       });
     });
