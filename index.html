@@ -3,46 +3,503 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PraxisGuardian | IT-Sicherheit & Automatisierung</title>
+<!-- Import modern Google font for a professional look -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<title>PraxisGuardian | IT-Sicherheit & Automatisierung</title>
 <style>
-body{font-family:'Inter',sans-serif;margin:0;padding:0;background:#F5F9FC;color:#333;}
-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:#fff;position:fixed;top:0;width:100%;z-index:1000;box-shadow:0 2px 4px rgba(0,0,0,0.1);}
-.logo-container{display:flex;align-items:center;gap:10px;}
-.logo-text{font-weight:700;font-size:22px;color:#002B5B;}
-.menu-toggle{display:none;font-size:30px;background:none;border:none;color:#002B5B;cursor:pointer;}
-nav{display:flex;gap:20px;}
-nav a{text-decoration:none;color:#002B5B;font-weight:600;}
-.hero{margin-top:100px;text-align:center;padding:100px 20px;background:linear-gradient(135deg,#002B5B,#005B82);color:white;}
-@media(max-width:768px){.menu-toggle{display:block;}nav{display:none;flex-direction:column;position:absolute;top:70px;right:0;width:100%;background:#fff;box-shadow:0 4px 10px rgba(0,0,0,0.1);}nav.open{display:flex;}}
+:root {
+  /* Professional blue color palette */
+  --primary-color: #002B5B; /* dark navy blue */
+  --secondary-color: #005B82; /* medium blue */
+  --accent-color: #F5F9FC; /* light blue for backgrounds */
+  --light-color: #ffffff;
+  --dark-text: #333333; /* dark grey for readability */
+}
+body {
+  margin:0;
+  font-family: 'Inter', sans-serif;
+  color: var(--dark-text);
+  background-color: var(--accent-color);
+  line-height:1.6;
+}
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  /* Use a light background for the header to give the page a clean, modern look */
+  background: var(--light-color);
+  color: var(--primary-color);
+  /* Increase padding to ensure logo and menu button are fully visible */
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-bottom: 1px solid var(--accent-color);
+  z-index: 1000;
+}
+  /* Hide any leftover base64 image so it does not appear */
+  header img[src^="data:image/png"] {
+    display: none;
+  }
+  /* Modern logo container consisting of an icon and text */
+  .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* Remove background to let the logo blend naturally into the light header */
+    background: transparent;
+    padding: 0;
+  }
+  .logo-icon {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+  }
+  .logo-text {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--primary-color);
+    line-height: 1;
+  }
+nav a {
+  color: var(--primary-color);
+  /* Reduce spacing between navigation links to prevent truncation on medium widths */
+  margin-left: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+nav a:hover {
+  color: var(--secondary-color);
+}
+/* Hamburger menu button styling */
+.menu-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--primary-color);
+  font-size: 30px;
+  cursor: pointer;
+}
+/* Allow navigation to wrap if necessary */
+header nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.hero {
+  background: linear-gradient(135deg,var(--primary-color) 0%,var(--secondary-color) 100%);
+  color: var(--light-color);
+  padding: 120px 40px 160px;
+  text-align:center;
+}
+.hero h1 {font-size:48px;margin-bottom:20px;}
+.hero p {font-size:20px;max-width:700px;margin:auto;}
+.hero .cta {
+  margin-top:30px;
+}
+.hero .cta a {
+  background: var(--light-color);
+  color: var(--primary-color);
+  padding: 14px 34px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:600;
+  box-shadow:0 2px 4px rgba(0,0,0,0.1);
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+}
+.hero .cta a:hover {
+  background: var(--secondary-color);
+  color: var(--light-color);
+  box-shadow:0 4px 8px rgba(0,0,0,0.2);
+}
+section {padding:80px 40px;}
+.section-title {
+  font-size:32px;
+  margin-bottom:30px;
+  text-align:center;
+  color: var(--primary-color);
+}
+.about {background: var(--light-color);} 
+.about p {max-width:800px;margin:auto;font-size:18px;}
+.services {background: var(--accent-color);} 
+.services .service-list {display:flex;flex-wrap:wrap;justify-content:center;gap:20px;}
+.services .service-item {
+  background: var(--light-color);
+  padding:20px;
+  border-radius:10px;
+  box-shadow:0 2px 4px rgba(0,0,0,0.1);
+  flex:1 1 250px;
+  max-width:300px;
+}
+.services .service-item h3 {margin-top:0;color:var(--primary-color);} 
+.pricing {background: var(--light-color);} 
+.pricing .pricing-cards {display:flex;flex-wrap:wrap;justify-content:center;gap:20px;}
+.pricing .card {
+  background: var(--accent-color);
+  border:1px solid #ddd;
+  border-radius:10px;
+  flex:1 1 280px;
+  max-width:300px;
+  padding:30px;
+  text-align:center;
+  box-shadow:0 2px 4px rgba(0,0,0,0.1);
+  position:relative;
+}
+.pricing .card.recommended {border:2px solid var(--secondary-color);} 
+.pricing .card h3 {margin-top:0;color:var(--primary-color);} 
+.pricing .card .price {font-size:32px;font-weight:bold;margin:10px 0;color:var(--secondary-color);} 
+.pricing .card ul {list-style:none;padding:0;text-align:left;} 
+.pricing .card ul li {padding:5px 0;} 
+.pricing .card a {
+  display:inline-block;
+  margin-top:15px;
+  background: var(--primary-color);
+  color: var(--light-color);
+  padding:10px 20px;
+  border-radius:6px;
+  text-decoration:none;
+  transition: background 0.3s;
+}
+.pricing .card a:hover {background: var(--secondary-color);} 
+/* Hervorhebung für ausgewählte Preiskarte */
+.pricing .card.selected {
+  border: 2px solid var(--secondary-color);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.pricing .card.selected a {
+  background: var(--secondary-color);
+  color: var(--light-color);
+}
+
+  /* Plan-Details-Bereich */
+  .plan-details {
+    padding: 60px 20px;
+    background: var(--light-color);
+    text-align: center;
+    display: none;
+  }
+  .plan-details h2 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+  }
+  .plan-details ul {
+    list-style: none;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0;
+    text-align: left;
+  }
+  .plan-details ul li {
+    padding: 5px 0;
+  }
+  .plan-details .button {
+    display: inline-block;
+    margin-top: 15px;
+    background: var(--primary-color);
+    color: var(--light-color);
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+  .plan-details .button:hover {
+    background: var(--secondary-color);
+  }
+.benefits {background: var(--accent-color);} 
+.benefits ul {list-style:none;max-width:800px;margin:auto;padding:0;} 
+.benefits ul li {padding:10px 0;font-size:18px;} 
+.contact {background: var(--light-color);} 
+.contact form {max-width:600px;margin:auto;} 
+.contact input, .contact textarea {
+  width:100%;padding:12px;margin-bottom:10px;border:1px solid #ccc;border-radius:4px;
+}
+.contact button {
+  background: var(--primary-color);
+  color: var(--light-color);
+  padding:12px 30px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  transition: background 0.3s;
+}
+.contact button:hover {background: var(--secondary-color);} 
+footer {background: var(--primary-color);color: var(--light-color);padding:20px;text-align:center;font-size:14px;} 
+@media (max-width:768px) {
+  .services .service-item,
+  .pricing .card {
+    flex: 1 1 100%;
+    max-width: none;
+  }
+  /* Stack header content on small screens so the navigation is visible */
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    /* Increase padding on mobile to prevent logo and menu button from being clipped */
+    padding: 15px 20px;
+  }
+  /* Hide navigation by default on small screens; it will be toggled via JavaScript */
+  header nav {
+    display: none;
+    width: 100%;
+    margin-top: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  /* When nav has the 'open' class, show it */
+  header nav.open {
+    display: flex;
+  }
+  /* Show the hamburger toggle button on small screens */
+  .menu-toggle {
+    display: block;
+    margin-left: auto;
+  }
+  header nav a {
+    display: block;
+    margin: 8px 0;
+    padding: 8px 0;
+    width: 100%;
+  }
+  .hero h1 {
+    font-size: 36px;
+  }
+}
 </style>
 </head>
 <body>
 <header>
+  <!-- Inline SVG/PNG logo encoded as Base64 to avoid separate file upload -->
+  <!-- Professional logo: use separate shield icon and text for better integration -->
   <div class="logo-container">
-    <div style='width:32px;height:32px;background:#005B82;border-radius:6px;'></div>
+    <img src="logo_icon.png" alt="PraxisGuardian Icon" class="logo-icon">
     <span class="logo-text">PraxisGuardian</span>
   </div>
-  <button class="menu-toggle" aria-label="Menü öffnen/schließen">☰</button>
+  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAA8CAYAAADc3IdaAAANN0lEQVR4nO2dabBdRRGAvwmELUJMgohBhYCRbaS0cIsbiApEEaFQETJEVFBQxAiFG7iBQQLECApKKqIkA0QttQARFYmETQEVjYOGUhTQAIKR1WDYxh99Io+bM2e7y3k39ld1f7w3W5+5M31merrnmhgjiqIow8CYtgVQFEWpiiosRVGGBlVYiqIMDaqwFEUZGlRhKYoyNKjCUhRlaFCFpSjK0KAKS1GUoUEVlqIoQ4MqLEVRhgZVWIqiDA2qsBRFGRpUYSmKMjSowlIUZWhQhaUoytCgCktRlKFBFZaiKEODKixFUYaG9dsWYF3CWOeBGYnkQ2LwfpDyVMFYtyHwcuA1wKuArYCJwCRgI2AV8DBwD3Br9rkBuDoGf08bMiv5GOuuBHZLJE+Pwf84UW5oxq0qrP9TjHXPB2YBhwGbFmTdLPtMBl7cUUcALgQuiMHf1g85FWUk6xvrfgd8OgZ/cdvCKP3HWLcRcBpwBN2/sCwwG3gnHcpMUfrBGGAX4CJj3UJjna641mGMdTsA1wNHoatrZQgZaXQ/BPDGOtOWMEr/MNbtCvwSeUEpylDS+ZY9ELgMOK8FWYaeGLwDXNtydGKs2wr5XseXZF0JLASWACH7+zFgc+DZwCuAVwPTgQn9klcZLKN13OaRty042VjnY/BPDFwapV8sBJ5VkB6BOcDsGPzDOel/zz6/Bs7OThb3B44EXtdjWRUlSZ7Cmgy8Eri2SYXGuonAwcDbgW2ALYEHgNNi8KcnymwKvB54LWLIfSHyBt8UWA08BPwLuBn4HXBRDD40kW80Y6wbi/TDW4AXAS9AVkXjgP8A9wF/Bn4PLAWuiMHfX1LnAcAeBVmeBGbE4BdXlTMGvxpYDCw21r0ZeFfVsm0wWsZXw7kxDTHX7Ia4nIwB7kBcSxbE4K/rtZxNGFQfG3aekfdb9SfE4Gd3CFTqq2Gsew9wBvnH5OfE4I8YUd8GwL7Ae4E3AmNryv5r4CMx+KRiNdYtRL7sPJYAb4zB5z0/xrrxwDLg+Ynyx8Tg53WUaezPYqzbH5gLTEnlyeEJ4ApkC/+DGPwjOfXeCLy0oI7ZMfgTarRZG2PdbcDWieQdY/DLG5adknKnGMT4GtFWT+dGVudE4CuIgiviJ1kb9w7aD6uNPk55uk+u2TDGuuOAc0n79HQa898JfBexh9R9UIBdgauNdR8tyPNB4E+JtD2AowvKnkVaWf0Q+HKZgFUx1h0FfI96ygpgPWBP4HzgQzn17kSxsroT+HzNNoeFQYyvStSdG8a6ScDPKVdWAHsB1xvrntuVkM0YeB+nFFZdg+p0xAYyaAww11j3trzEzB5zIPBoovwXjXXbr1Wpde8g/cZZARyaWpnVxVi3I7Ky6sfp7D4l6V+LwT/Wh3br0JN+7BOF46siteaGsW494BLqneZOAS4FNqkn2qigVh+nFNZ9NRs9mPIJ1y93CQPMyb7otYjB3wR8LFF2Y+Bp/mfGusnA1xP5nwAOjsGv7ELeTg4HNuhhfSN5ZUn6j/rU7rpE4fiqQN258VFgWoN2dgFe1qDcaKByH6cU1p0NG34U8aJ+CWIo3hyZNJ9DYtHyeBK4EjgOeBOyDRuPHAiMA7YDDkC2YSm2Rwx+ucTgz0DeWnm8HPjkiL/PRWLp8jgxBn9VgRxNSJ2yPYh4o28LbIgotWcjg/KwTM67S+pea/U4glWI8bNt+r3C6vv4qkjp3DDWbQIcX1DHE8hqfEckznMy8AHgn13K1i0D6+OUt/OVlUV9in8De3acWqxCfHmuz8n/CHAmMCcGn1KQq4C/ZJ/vG+vORo7S83g98LMC+d4D/BbI2+t/2lh3KRL8u1ei/M+BLxTU35QtE/8/Nga/oON/92SfXwHfyJx8pwHvR/q/kyJb5F2jxHXlyT7VO+jxVUTVuXEQ8MyCeo7oGBN3AfONddcgTsFFMaH9YOB9nKewVgC/qCTu0/lknSPWGPz3EENzHS4g/bCFe/4Y/Epj3QzkdLBz6TkWOaZPGS7vBVwMvh+TK2VfK91CZ3a067JPHs8oKH5/Wf1ZcPPOZfkyVsTgmxh++7LCGvT4KqHq3HhrQdovcl5gAMTg/2CsOw04sZF0DWmjj/MU1vENJuZ9wPyaZf6HsW4q8mXtiiwNt0KWkuOofmfXpLIMMfirjHUnIcvwTqamigHvLniDdMtt5J8Ozss81H8G/LHHdjMYPcbuvssxqPGVoM7cKLJdLSopu5ABK6yRDKqPOxXWd5AHr8tPM2fCWhjrXgacCuzeoM1OysJO1nASsvRM+at0MjcGf1kzkSpxGfl793HAZ7MPxrr7gVuAPyL+YVcDN5Vs6/5Nul9GS2hNv7aEbY2vTirNjczvaouCLDcWlY/B326su5fiiIaeM+g+Hqn5FiHbniZvvGV1CxjrHLKV2b1Be3lUOsXJVo8zqGaovAH4VDdCVeDrVDvkeCYSy3co8CVkAN9prJtrrEvZwYrq3dJYt87eONvW+Mqh6twoe4H8vUIdf6vYVk9oo4/HIGEe+8XgZ3bhk1PrlMJYtwvwTVq64iQGv4IcR8sO1oSs9NVPKQb/EOKr02SwbQEcAyw31r0hJ/2WgrLjkBCKdY62x1cHVedGmcF8rSiGHFZVbKtr2urjMTH4XWLwF3VZT92O+gLpB30AcTPYCdgkBm/WfOitn8kBJeljSIf19JQY/DLEuH088NcGVYxHTmA6txS/LCm3d4lctqP/uz3az6NslVd0cJBiNIyvNVSdGw+VpG9coY5BOo620scDfwMZ68Yh4SQp9o7BpybaZj2S4f1IWEEZJxjrlsTgl/ai3SKyldbJyG0Z2/NUEOn2SCzdNhQP2s2QUKTPjfjfpcApBWWOMNad3qfTz6psmErI/JJq2dpGw/hqSJmz9nMp97t7Xo9kKaTNPm7DhrEd6UF6c8GDgjjddYWxbmeqxwGOAc7PYrsGRgz+lhj8ghj8rBj89Bj8TsgWbkdgXkHRp20Ls2j43xTknwIc27XA5RRtq4sG8CuoP0ZbHV9NicH/i7RzNZSsTIx1WzM4g3trfdyGwtq8IC254svCZw7rpmFj3cbAt6m2vF7DVsC3umm3F8TgYwx+eQz+GOCmRLY8P6hTS6qebax7U3fSlfJgQVrKnQTgfQ3aam189YCiiZ6KbV3DQMwXGa31cRsKK++CuDVMNdalDMHzgB26bPtM0o6QX0FOBfPYx1g3q8u2czHWzTbWnW6se2HF/OuRPv5d6/uMwX8buKagyrHApca6o/t4p/+KgrTcmy6NdftQ7baCTtocX91S9EMwr86uqFmLzIRwXH9EyqW1Pm7jFOVW5AQuT1mOAS7JruNYinTMSxADXtnNA4UY6w4krd0D8oU/DwnfGZeTZ46x7qoYfNEWqwmTkHiwY411y4EfI/cE3Yy4JTyIeMNPQPriWCS+MI/U0fchyNYwZQ8ai9zVdLSxbhFwOWL8X5mlTUAMqAfWebAR3Ejai3svY903kV/fuQP5DmYCH6dZwHwr46tHXAicTjo8Z352u8cCxOF4AnIf1WwGa39rrY8HvsLKPLaLlr7bIHfs3IOcsFxL98pqW9Lexo8i/merY/B/Rn6rL48NkBs2m5xaVWWHrP1FiIK5G+mDx5HwoJ+SjnUEucxtLbJL7val/MRqO8Rofy2iLFcjA+5vWd3vrfIQOZSdQh+K3Fu2GrlR9TMUGOOLaGN89YoY/CpE+aRYH3mx3oL01d3IuB6os2ibfdyW42DRl1JE7R/HyK4dXkz6DXRCDP5/txZk8Vo/SOSdCpxdV4YBsRI4J5UYg78G+XXnWwcm0VNtL0NuRq3LJTTzTxvY+OoD82gWyxso8YbvMa30cSsKKwb/I8SeVIezgK82aO4U0icsS5HrOjo5HImEz+MQY93MBnL0k4eBg2Lw/yjKlN0NtiuiwHsZw/cI5auow6kQcD2CK5C74mu7XAx4fPWULNRqX8Shuyp3ICuYgTmOttXHbYZmzELi5B4vybca+HgM/qi6DWQ/kJC6fvUBJKh5rQmRLXnfTXpSn1XVSF6BTyA2rKtpFlf3E2BaDP7yKplj8A/E4A9CIuMXUd7/KR5BArOPBJ4Tgy+MHIjB/xXxLftLSb1PIm4n07MtUlNm0efx1S9i8P9EnHQvrJD9KuT7v72/UuUyiwH3cWuhC1nM4onZ5fJHIj5EUxBv3X8gb42LAd/kpoTs5tDzSBtuP1z0JcfgLzfWnUG+TesZiD1rWpOg74527kfsEPOzANg9kHu5dka2oBOz9h5FgpnvQmwYNwAXx+CLwm+K2g3ATGPdhxFFshuyEt0ia3MicmHcw4gX9p1Zu8uR+7iuq/vsMfiQGY1nAvshP2+/efZctyPG/gUx+NQ9/HXa6uv46jfZS/NgY91XkUOT3REXG4McrvwKcbdZ0qvruhvIOPA+NjGOlltGFEVRillno/UVRVn3UIWlKMrQoApLUZShQRWWoihDgyosRVGGBlVYiqIMDaqwFEUZGlRhKYoyNKjCUhRlaFCFpSjK0PBfxZqXrvxHVlEAAAAASUVORK5CYII=" alt="PraxisGuardian Logo">
   <nav>
     <a href="#about">Über uns</a>
     <a href="#services">Leistungen</a>
     <a href="#pricing">Pakete</a>
     <a href="#contact">Kontakt</a>
   </nav>
+  <!-- Hamburger menu toggle button for mobile -->
+  <button class="menu-toggle" aria-label="Menü öffnen/schließen">&#9776;</button>
 </header>
 <section class="hero">
   <h1>Schützen Sie Ihre Praxis. Optimieren Sie Ihre Prozesse.</h1>
-  <p>PraxisGuardian bietet ganzheitliche IT-Sicherheitslösungen und Automatisierungsdienste speziell für Arztpraxen.</p>
+  <p>PraxisGuardian bietet ganzheitliche IT‑Sicherheitslösungen und Automatisierungsdienste speziell für Arztpraxen. Wir sorgen dafür, dass Ihre Technik zuverlässig, sicher und effizient läuft.</p>
+  <div class="cta">
+    <a href="#contact">Jetzt unverbindlich beraten lassen</a>
+  </div>
 </section>
-<script>
-document.addEventListener('DOMContentLoaded',()=>{
- const toggle=document.querySelector('.menu-toggle');
- const nav=document.querySelector('nav');
- toggle.addEventListener('click',()=>nav.classList.toggle('open'));
-});
-</script>
+<section id="about" class="about">
+  <h2 class="section-title">Über uns</h2>
+  <p>Als spezialisiertes IT-Dienstleistungsunternehmen für medizinische Einrichtungen kennen wir die besonderen Anforderungen von Arztpraxen. Mit über 5 Jahren Erfahrung in der Softwareentwicklung und IT-Betreuung sorgen wir dafür, dass Ihre Systeme sicher, stabil und konform mit allen gesetzlichen Bestimmungen laufen. Unsere Mission ist es, Technik so einzusetzen, dass sie den Praxisalltag erleichtert und nicht belastet.</p>
+</section>
+<section id="services" class="services">
+  <h2 class="section-title">Unsere Leistungen</h2>
+  <div class="service-list">
+    <div class="service-item">
+      <h3>IT-Sicherheit</h3>
+      <p>Schutz vor Viren, Malware und unbefugten Zugriffen. Sicherheitskonzepte nach DSGVO und aktuellem Stand der Technik.</p>
+    </div>
+    <div class="service-item">
+      <h3>Monitoring & Wartung</h3>
+      <p>24/7 Überwachung Ihrer Systeme. Frühzeitige Erkennung und Behebung von Problemen. Regelmäßige Updates und Wartungsarbeiten.</p>
+    </div>
+    <div class="service-item">
+      <h3>Backups & Recovery</h3>
+      <p>Automatisierte Sicherungen und regelmäßige Test-Wiederherstellungen, damit Ihre Daten jederzeit verfügbar sind.</p>
+    </div>
+    <div class="service-item">
+      <h3>Automatisierung</h3>
+      <p>Wir digitalisieren und automatisieren Ihre wiederkehrenden Prozesse, damit Sie sich auf Ihre Patienten konzentrieren können.</p>
+    </div>
+    <div class="service-item">
+      <h3>Beratung & Support</h3>
+      <p>Individuelle Beratung, schnelle Hilfe per Fernwartung und Vor-Ort-Service, wenn Sie uns brauchen.</p>
+    </div>
+  </div>
+</section>
+<section id="pricing" class="pricing">
+  <h2 class="section-title">Unsere Pakete</h2>
+  <div class="pricing-cards">
+    <div class="card">
+      <h3>Basic</h3>
+      <p class="price">150 € / Monat</p>
+      <ul>
+        <li>Monitoring der Systeme</li>
+        <li>30 Min Remote-Support / Monat</li>
+        <li>Reaktionszeit innerhalb 48h</li>
+      </ul>
+      <a href="#contact">Auswählen</a>
+    </div>
+    <div class="card recommended">
+      <h3>Standard</h3>
+      <p class="price">300 € / Monat</p>
+      <ul>
+        <li>Monitoring & Wartung</li>
+        <li>1 Std Remote-Support / Monat</li>
+        <li>Reaktionszeit innerhalb 24h</li>
+        <li>Monatlicher System-Report</li>
+      </ul>
+      <a href="#contact">Auswählen</a>
+    </div>
+    <div class="card">
+      <h3>Premium</h3>
+      <p class="price">600 € / Monat</p>
+      <ul>
+        <li>Monitoring & Wartung</li>
+        <li>3 Std Support / Monat</li>
+        <li>Reaktionszeit innerhalb 8h</li>
+        <li>1 Vor-Ort-Besuch pro Quartal</li>
+      </ul>
+      <a href="#contact">Auswählen</a>
+    </div>
+  </div>
+</section>
+
+  <!-- Plan-Details-Bereich: wird nach Klick auf ein Paket angezeigt -->
+  <section id="plan-details" class="plan-details">
+    <h2 id="plan-title"></h2>
+    <p id="plan-description"></p>
+    <ul id="plan-features"></ul>
+    <p><strong id="plan-price"></strong></p>
+    <p>Wir kümmern uns um Ihre IT, damit Sie sich voll und ganz auf Ihre Patienten konzentrieren können. Wählen Sie Ihr Paket und starten Sie sorgenfrei.</p>
+    <!-- Link führt zum Kontaktformular und lässt Sie direkt anfragen -->
+    <a href="#contact" class="button">Kontakt aufnehmen</a>
+  </section>
+<section id="benefits" class="benefits">
+<h2 class="section-title">Ihre Vorteile mit PraxisGuardian</h2>
+  <ul>
+    <li>Maximale Sicherheit für Patientendaten</li>
+    <li>Stabile Systeme und weniger Ausfallzeiten</li>
+    <li>Verlässlicher Ansprechpartner mit kurzer Reaktionszeit</li>
+    <li>Transparente und kalkulierbare Kosten</li>
+    <li>Individuelle Beratung und maßgeschneiderte Lösungen</li>
+  </ul>
+</section>
+<section id="contact" class="contact">
+  <h2 class="section-title">Kontakt</h2>
+  <p>Haben Sie Fragen oder möchten Sie ein individuelles Angebot? Nutzen Sie unser Kontaktformular oder schreiben Sie uns direkt eine E-Mail an <strong>kontakt@praxisguardian.de</strong>. Wir freuen uns auf Ihre Anfrage!</p>
+  <form>
+    <input type="text" placeholder="Ihr Name" required>
+    <input type="email" placeholder="Ihre E-Mail" required>
+    <input type="text" placeholder="Telefon (optional)">
+    <!-- ausgewähltes Paket als versteckte Eingabe zum Vorfüllen -->
+    <input type="hidden" id="selected-plan" name="plan" value="">
+    <textarea rows="5" placeholder="Ihre Nachricht" required></textarea>
+    <button type="submit">Nachricht senden</button>
+  </form>
+</section>
+<footer>
+  &copy; 2025 PraxisGuardian. Alle Rechte vorbehalten. | Impressum | Datenschutz
+</footer>
+  <!-- Interaktive Auswahl für Preiskarten -->
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.pricing .card');
+    const detailsSection = document.getElementById('plan-details');
+    const planTitle = document.getElementById('plan-title');
+    const planDescription = document.getElementById('plan-description');
+    const planFeatures = document.getElementById('plan-features');
+    const planPrice = document.getElementById('plan-price');
+    const hiddenInput = document.getElementById('selected-plan');
+
+    const planData = {
+      "Basic": {
+        price: "150 € / Monat",
+        features: [
+          "Monitoring der Systeme",
+          "30 Min Remote-Support / Monat",
+          "Reaktionszeit innerhalb 48h"
+        ],
+        description: "Ideal für kleine Praxen, die eine Grundabsicherung wünschen. Wir überwachen Ihre Systeme und unterstützen Sie bei Problemen."
+      },
+      "Standard": {
+        price: "300 € / Monat",
+        features: [
+          "Monitoring & Wartung",
+          "1 Std Remote-Support / Monat",
+          "Reaktionszeit innerhalb 24h",
+          "Monatlicher System-Report"
+        ],
+        description: "Für Praxen, die mehr Unterstützung brauchen. Neben Monitoring kümmern wir uns um Wartung, bieten schnellere Reaktionszeiten und liefern monatliche Berichte."
+      },
+      "Premium": {
+        price: "600 € / Monat",
+        features: [
+          "Monitoring & Wartung",
+          "3 Std Support / Monat",
+          "Reaktionszeit innerhalb 8h",
+          "1 Vor-Ort-Besuch pro Quartal"
+        ],
+        description: "Unser Rundum-sorglos-Paket. Maximale Betreuung inklusive regelmäßiger Vor-Ort-Termine und kürzester Reaktionszeit."
+      }
+    };
+
+    cards.forEach(card => {
+      card.addEventListener('click', function(e) {
+        // Verhindert das standardmäßige Navigieren des Links
+        e.preventDefault();
+        // Alle Karten zurücksetzen
+        cards.forEach(c => {
+          c.classList.remove('selected');
+          const linkEl = c.querySelector('a');
+          if (linkEl) {
+            linkEl.textContent = 'Auswählen';
+          }
+        });
+        // Diese Karte auswählen
+        this.classList.add('selected');
+        const link = this.querySelector('a');
+        if (link) {
+          link.textContent = 'Ausgewählt';
+        }
+        // Planname ermitteln und Details füllen
+        const planName = this.querySelector('h3').textContent.trim();
+        const data = planData[planName];
+        if (data) {
+          planTitle.textContent = planName + ' Paket';
+          planDescription.textContent = data.description;
+          planFeatures.innerHTML = '';
+          data.features.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = item;
+            planFeatures.appendChild(li);
+          });
+          planPrice.textContent = data.price;
+          hiddenInput.value = planName;
+          detailsSection.style.display = 'block';
+          // Zum Detailbereich scrollen
+          detailsSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  });
+  </script>
+
+  <!-- Toggle navigation menu for mobile -->
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('header nav');
+    if (menuToggle && nav) {
+      menuToggle.addEventListener('click', function() {
+        nav.classList.toggle('open');
+      });
+      // Close navigation after clicking a link on mobile
+      nav.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          nav.classList.remove('open');
+        });
+      });
+    }
+  });
+  </script>
+
 </body>
 </html>
